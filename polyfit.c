@@ -26,6 +26,11 @@ void build_A_matrix(int n, int m, double const * __restrict x, double const * __
     *ws += n * (n + 1); // A is permanently removing from workspace
     scratch = *ws; // scratch for calculation. must be at least m in length
 
+    // initialize final column
+    for (i = 0; i < n; i++) {
+        A[index_2D(i, n, N)] = 0.0;
+    }
+
     j = 0;
     for (i = 0; i < m; i++) {
         scratch[i] = 1.0;
