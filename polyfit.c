@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+#include "polyfit.h"
+
 #define index_2D(i, j, jmax) ((i) * (jmax) + (j))
 
 #ifndef NDEBUG
@@ -65,13 +67,6 @@ void build_A_matrix(int n, int m, double const * __restrict x, double const * __
 
     // set A to output
     *A_ = A;
-
-/*
-#ifndef NDEBUG
-    printf("A matrix after building:\n");
-    print_matrix(n, n + 1, A);
-#endif
-*/
 }
 
 // A is an n * (n + 1) consisting of [ X^TX | X^Ty ] where X^TX is a square (n) symmetric invertible matrix (provided all x are unique) and X^Ty is 1xn
@@ -97,12 +92,6 @@ void GJ_elim(int n, double * A) {
     }
 
     // A should be upper triangular now
-/*
-#ifndef NDEBUG
-    printf("A matrix in upper echelon:\n");
-    print_matrix(n, n + 1, A);
-#endif
-*/
 
     // remove above diagonal
     for (i = n - 2; i >= 0; i--) {
@@ -111,12 +100,6 @@ void GJ_elim(int n, double * A) {
             A[index_2D(i, j, N)] = 0.0;
         }
     }
-/*
-#ifndef NDEBUG
-    printf("A matrix after Gauss-Jordan elimination:\n");
-    print_matrix(n, n + 1, A);
-#endif
-*/
 }
 
 // gauss elimination. if NULL is passed to ws, returns the size of the workspace needed, 
@@ -171,3 +154,4 @@ int polyval(int n, double const * __restrict pars, int m, double const * __restr
     }
     return 0;
 }
+
