@@ -2,7 +2,7 @@
 .OBJDIR: .
 CC = cl
 NAME = polyfit
-CFLAGS = /Wall /WX /W3
+CFLAGS = /Wall /WX /W3 /wd4711 /O2
 IFLAGS = 
 LFLAGS = 
 
