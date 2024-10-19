@@ -122,11 +122,6 @@ int polyfit_w(int m, double const * __restrict x, double const * __restrict y, i
         i++;
     }
 
-#ifndef NDEBUG
-    printf("parameters:\n");
-    print_matrix(1, n, pars);
-#endif
-
     return 0;
 }
 
